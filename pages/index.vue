@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div>
-      <logo />
+      <VapeLogo />
       <h1 class="title">
         Vape Calculator
       </h1>
@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import VapeLogo from '~/components/VapeLogo.vue'
 
 export default {
   components: {
-    Logo
+    VapeLogo
   },
 
   data() {return {
