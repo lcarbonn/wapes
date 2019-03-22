@@ -18,6 +18,14 @@ export default {
     ]
   },
 
+  manifest: {
+    name: 'Wapes',
+    short_name: 'Wapes',
+    theme_color: '#3986c4',
+    background_color: '#3986c4',
+    display: 'standalone'
+  },
+ 
   /*
   ** Customize the progress-bar color
   */
