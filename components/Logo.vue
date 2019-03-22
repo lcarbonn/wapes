@@ -1,24 +1,21 @@
 <template>
-  <div class="VueToNuxtLogo">
-    <div class="Triangle Triangle--two" />
-    <div class="Triangle Triangle--one" />
-    <div class="Triangle Triangle--three" />
-    <div class="Triangle Triangle--four" />
+  <div class="WapesLogo">
+    <div class="Bubble Bubble-one" />
+    <div class="SmallBubble Bubble-two" />
   </div>
 </template>
 
 <style>
-.VueToNuxtLogo {
+.WapesLogo {
   display: inline-block;
-  animation: turn 2s linear forwards 1s;
-  transform: rotateX(180deg);
   position: relative;
   overflow: hidden;
-  height: 180px;
-  width: 245px;
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
 }
 
-.Triangle {
+.Bubble {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,38 +23,33 @@
   height: 0;
 }
 
-.Triangle--one {
-  border-left: 105px solid transparent;
-  border-right: 105px solid transparent;
-  border-bottom: 180px solid #41b883;
+.SmallBubble {
+  position: absolute;
+  top: 150px;
+  left: 50px;
+  width: 0;
+  height: 0;
 }
 
-.Triangle--two {
-  top: 30px;
-  left: 35px;
-  animation: goright 0.5s linear forwards 3.5s;
-  border-left: 87.5px solid transparent;
-  border-right: 87.5px solid transparent;
-  border-bottom: 150px solid #3b8070;
+.Bubble-one {
+  height: 150px;
+  width: 150px;
+  animation: turn 2s linear forwards 1s;
+  transform: rotateX(180deg);
+  border-radius: 75px;
+  background-color: #3986c4;
+  background-image: radial-gradient(white 10%, #3986c4 90%);
 }
 
-.Triangle--three {
-  top: 60px;
-  left: 35px;
-  animation: goright 0.5s linear forwards 3.5s;
-  border-left: 70px solid transparent;
-  border-right: 70px solid transparent;
-  border-bottom: 120px solid #35495e;
+.Bubble-two {
+  height: 70px;
+  width: 70px;
+  animation: godown 2s ease-in-out forwards 1s;
+  border-radius: 35px;
+  background-color: #3986c4;
+  background-image: radial-gradient(#3986c4 10%, white 90%);
 }
 
-.Triangle--four {
-  top: 120px;
-  left: 70px;
-  animation: godown 0.5s linear forwards 3s;
-  border-left: 35px solid transparent;
-  border-right: 35px solid transparent;
-  border-bottom: 60px solid #fff;
-}
 
 @keyframes turn {
   100% {
@@ -67,7 +59,14 @@
 
 @keyframes godown {
   100% {
-    top: 180px;
+    top: 80px;
+    left: 80px;
+  }
+}
+
+@keyframes godup {
+  100% {
+    top: 0px;
   }
 }
 

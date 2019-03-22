@@ -1,9 +1,9 @@
 <template>
   <section class="container">
     <div>
-      <VapeLogo />
+      <WapesLogo />
       <h1 class="title">
-        Vape Calculator
+        Wapes
       </h1>
       <div id="app">
         <div class="labels">
@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import VapeLogo from '~/components/VapeLogo.vue'
+import WapesLogo from '~/components/Logo.vue'
 
 export default {
   components: {
-    VapeLogo
+    WapesLogo
   },
 
   data() {return {
