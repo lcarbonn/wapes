@@ -98,7 +98,7 @@ export default {
 p {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 25px;
+  font-size: 1.5rem;
   color:white;
 }
 
@@ -130,7 +130,7 @@ p {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 
 .field {
@@ -138,7 +138,7 @@ p {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #3986c4;
   border-style: none;
-  font-size: 20px;
+  font-size: 1.5rem;
   width: 100%;
   color: white;
   text-align: right;
@@ -149,7 +149,7 @@ p {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 50px;
+  font-size: 3rem;
   color:white;
   letter-spacing: 1px;
 }
