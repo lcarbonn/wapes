@@ -6,34 +6,36 @@
         Wapes
       </h1>
       <div id="app">
-        <div class="labels">
-          <p>Base :</p>
-          <p>Flavor :</p>
-          <p>Nico Strength :</p>
-          <p>Total volume :</p>
-          <p>You nedd :</p>
-          <p>Flavor cond :</p>
-          <p>You need :</p>
-        </div>
-        <div class="inputs">
-          <p><input class="field" v-model.number="baseVolume" v-on:keyup="calc"></p>
-          <p><input class="field" v-model.number="flavorPercent" v-on:keyup="calc"></p>
-          <p><input class="field" v-model.number="nicoStrength" v-on:keyup="calc"></p>
-          <p><span class="result">{{totalVolume}}</span></p>
-          <p><span class="result">{{nbBooster}}</span></p>
-          <p><input class="field" v-model.number="flavorCond" v-on:keyup="calc"></p>
-          <p><span class="result">{{nbFlavor}}</span></p>
-        </div>
-        <div class="metrics">
-          <p>ml</p>
-          <p>% : Volume : <span class="result">{{flavorVolume}}</span> ml</p>
-          <p>mg/ml</p>
-          <p>ml</p>
-          <p>booster(s)</p>
-          <p>ml</p>
-          <p>flavor(s) of <span class="result">{{flavorCond}}</span> ml</p>
-        </div>
-      </div>      
+        <form>
+          <div class="labels">
+            <p><label for="base">Base :</label></p>
+            <p><label for="flavor">Flavor :</label></p>
+            <p><label for="nico">Nico Strength :</label></p>
+            <p><label for="flavcond">Flavor cond :</label></p>
+            <p>You need :</p>
+            <p>You need :</p>
+            <p>for total :</p>
+          </div>
+          <div class="inputs">
+            <p><input class="field" id="base" v-model.number="baseVolume" v-on:keyup="calc"></p>
+            <p><input class="field" id="flavor" v-model.number="flavorPercent" v-on:keyup="calc"></p>
+            <p><input class="field" id="nico" v-model.number="nicoStrength" v-on:keyup="calc"></p>
+            <p><input class="field" id="flavcond" v-model.number="flavorCond" v-on:keyup="calc"></p>
+            <p><span class="result">{{nbBooster}}</span></p>
+            <p><span class="result">{{nbFlavor}}</span></p>
+            <p><span class="result">{{totalVolume}}</span></p>
+          </div>
+          <div class="metrics">
+            <p>ml</p>
+            <p>%</p>
+            <p>mg/ml</p>
+            <p>ml</p>
+            <p>booster(s)</p>
+            <p>flavor(s) of <span class="result">{{flavorCond}}</span> ml for <span class="result">{{flavorVolume}}</span> ml</p>
+            <p>ml</p>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 </template>
@@ -150,14 +152,6 @@ p {
   font-size: 50px;
   color:white;
   letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color:white;
-  word-spacing: 5px;
-  padding-bottom: 15px;
 }
 
 .links {
