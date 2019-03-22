@@ -9,10 +9,10 @@
         <div class="labels">
           <p>Base :</p>
           <p>Flavor :</p>
-          <p>Nicotine strength :</p>
+          <p>Nico Strength :</p>
           <p>Total volume :</p>
           <p>You nedd :</p>
-          <p>Flavor conditionning :</p>
+          <p>Flavor cond :</p>
           <p>You need :</p>
         </div>
         <div class="inputs">
