@@ -26,13 +26,13 @@
             <p><span class="result">{{totalVolume}}</span></p>
           </div>
           <div class="metrics">
-            <p>ml</p>
-            <p>%</p>
-            <p>mg/ml</p>
-            <p>ml</p>
-            <p>booster(s)</p>
-            <p>flavor(s) of <span class="result">{{flavorCond}}</span> ml for <span class="result">{{flavorVolume}}</span> ml</p>
-            <p>ml</p>
+            <p> ml</p>
+            <p> %</p>
+            <p> mg/ml</p>
+            <p> ml</p>
+            <p> booster(s)</p>
+            <p> flavor(s) of <span class="result">{{flavorCond}}</span> ml for <span class="result">{{flavorVolume}}</span> ml</p>
+            <p> ml</p>
           </div>
         </form>
       </div>
@@ -103,27 +103,20 @@ p {
 }
 
 .labels {
-  /*border:solid;
-  border-color: blue;*/
   float: left;
   text-align: right;
   width: 40%;
 }
 
 .inputs {
-  /*border:solid;
-  border-color:yellow;*/
   float: left;
   text-align: right;
-  width: 15%;
+  width: 10%;
 }
 
 .metrics {
-  /*border:solid;
-  border-color:green;*/
-  float: right;
+  float: left;
   text-align: left;
-  width: 43%;
 }
 
 .result {
@@ -138,10 +131,12 @@ p {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #3986c4;
   border-style: none;
+  border-bottom: 1px solid;
   font-size: 1.5rem;
   width: 100%;
   color: white;
   text-align: right;
+  height: 1.5rem;  
 }
 
 .title {
