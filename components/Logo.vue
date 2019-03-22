@@ -38,7 +38,7 @@
   transform: rotateX(180deg);
   border-radius: 75px;
   background-color: #3986c4;
-  background-image: radial-gradient(white 10%, #3986c4 90%);
+  background-image: radial-gradient(white 10%,#3986c4 40%, #3986c4 50%);
 }
 
 .Bubble-two {
