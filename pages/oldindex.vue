@@ -2,31 +2,37 @@
   <section class="container">
     <div>
       <WapesLogo />
-      <h1>Wapes</h1>
+      <h1 class="title">
+        Wapes
+      </h1>
       <div id="app">
         <form>
-          <div>
-            <label for="base"> Base (ml)</label>
-            <input id="base" type="text" v-model.number="baseVolume" v-on:keyup="calc">
+          <div class="labels">
+            <p><label for="base">Base :</label></p>
+            <p><label for="flavor">Flavor :</label></p>
+            <p><label for="nico">Nico Strength :</label></p>
+            <p><label for="flavcond">Flavor cond :</label></p>
+            <p>You need :</p>
+            <p>You need :</p>
+            <p>for total :</p>
           </div>
-          <div>
-            <label for="flavor">Flavor (%)</label>
-            <input id="flavor" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calc">
+          <div class="inputs">
+            <p><input class="field" id="base" v-model.number="baseVolume" v-on:keyup="calc"></p>
+            <p><input class="field" id="flavor" v-model.number="flavorPercent" v-on:keyup="calc"></p>
+            <p><input class="field" id="nico" v-model.number="nicoStrength" v-on:keyup="calc"></p>
+            <p><input class="field" id="flavcond" v-model.number="flavorCond" v-on:keyup="calc"></p>
+            <p><span class="result">{{nbBooster}}</span></p>
+            <p><span class="result">{{nbFlavor}}</span></p>
+            <p><span class="result">{{totalVolume}}</span></p>
           </div>
-          <div>
-            <label for="nico">Nico Strength (mg/ml)</label>
-            <input id="nico" v-model.number="nicoStrength" v-on:keyup="calc">
-          </div>
-          <div>
-            <label for="flavcond">Flavor conditionning (ml)</label>
-            <input id="flavcond" v-model.number="flavorCond" v-on:keyup="calc">
-          </div>
-          <h4>You need</h4>
-          <div>
-            <p><span class="result">{{nbBooster}}  booster(s)</span></p>
-            <p><span class="result">{{nbFlavor}}  flavor(s) of {{flavorCond}} ml for</span>
-            <span class="result">{{flavorVolume}} ml</span></p>
-            <p>for total of <span class="result">{{totalVolume}} ml</span></p>
+          <div class="metrics">
+            <p> ml</p>
+            <p> %</p>
+            <p> mg/ml</p>
+            <p> ml</p>
+            <p> booster(s)</p>
+            <p> flavor(s) of <span class="result">{{flavorCond}}</span> ml for <span class="result">{{flavorVolume}}</span> ml</p>
+            <p> ml</p>
           </div>
         </form>
       </div>
@@ -89,12 +95,28 @@ export default {
   background-color:#3986c4;
 }
 
-p, label {
+p {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.5rem;
   color:white;
-  font-weight: 300;
+}
+
+.labels {
+  float: left;
+  text-align: right;
+  width: 40%;
+}
+
+.inputs {
+  float: left;
+  text-align: right;
+  width: 10%;
+}
+
+.metrics {
+  float: left;
+  text-align: left;
 }
 
 .result {
@@ -104,34 +126,25 @@ p, label {
   font-size: 1.5rem;
 }
 
-input {
+.field {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #3986c4;
-  border: 1px solid;
-  font-size: 1.3rem;
-  width: 10em;
+  border-style: none;
+  border-bottom: 1px solid;
+  font-size: 1.5rem;
+  width: 100%;
   color: white;
-  text-align: center;
+  text-align: right;
   height: 1.5rem;  
 }
 
-h1 {
+.title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 3rem;
-  color:white;
-  letter-spacing: 1px;
-}
-
-h4 {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 1.5rem;
   color:white;
   letter-spacing: 1px;
 }
