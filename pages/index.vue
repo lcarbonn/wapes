@@ -16,12 +16,9 @@
           <div class="row">
             <label for="nico">Nico Strength (mg/ml)</label>
             <select id="nico" v-model.number="nicoStrength" v-on:click="calc">
-              <option></option>
-              <option>3</option>
-              <option>6</option>
-              <option>9</option>
-              <option>12</option>
-              <option>16</option>
+              <option v-for="nico in nicos" v-bind:value="nico.rate" v-bind:key="nico.id">
+                {{ nico.rate }}
+              </option>
             </select>
           </div>
           <div class="row">
@@ -57,7 +54,15 @@ export default {
     nicoStrength:'',
     nbBooster:'',
     flavorCond:'',
-    nbFlavor:''
+    nbFlavor:'',
+    nicos: [
+      {rate:''},
+      {rate:3},
+      {rate:6},
+      {rate:9},
+      {rate:12},
+      {rate:16}
+    ]
   }},
 
 	methods: {
