@@ -15,7 +15,14 @@
           </div>
           <div class="row">
             <label for="nico">Nico Strength (mg/ml)</label>
-            <input id="nico" type="number" v-model.number="nicoStrength" v-on:keyup="calc">
+            <select id="nico" v-model.number="nicoStrength" v-on:click="calc">
+              <option></option>
+              <option>3</option>
+              <option>6</option>
+              <option>9</option>
+              <option>12</option>
+              <option>16</option>
+            </select>
           </div>
           <div class="row">
             <label for="flavcond">Flavor conditionning (ml)</label>
@@ -121,6 +128,18 @@ input {
   width: 90%;
   color: white;
   text-align: center;
+}
+
+select {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #3986c4;
+  border: 1px solid;
+  font-size: 1.5rem;
+  width: 90%;
+  color: white;
+  text-align: center;
+  text-align-last: center;
 }
 
 h1 {
