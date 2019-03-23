@@ -7,7 +7,7 @@
         <form>
           <div class="row">
             <label for="base"> Base (ml)</label>
-            <input id="base" type="text" v-model.number="baseVolume" v-on:keyup="calc">
+            <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calc">
           </div>
           <div class="row">
             <label for="flavor">Flavor (%)</label>
@@ -15,11 +15,11 @@
           </div>
           <div class="row">
             <label for="nico">Nico Strength (mg/ml)</label>
-            <input id="nico" v-model.number="nicoStrength" v-on:keyup="calc">
+            <input id="nico" type="number" v-model.number="nicoStrength" v-on:keyup="calc">
           </div>
           <div class="row">
             <label for="flavcond">Flavor conditionning (ml)</label>
-            <input id="flavcond" v-model.number="flavorCond" v-on:keyup="calc">
+            <input id="flavcond" type="number" v-model.number="flavorCond" v-on:keyup="calc">
           </div>
           <h4>You need</h4>
           <div class="row">
@@ -117,11 +117,10 @@ input {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #3986c4;
   border: 1px solid;
-  font-size: 1.3rem;
-  width: 10em;
+  font-size: 1.5rem;
+  width: 90%;
   color: white;
   text-align: center;
-  height: 1.5rem;  
 }
 
 h1 {
