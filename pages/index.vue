@@ -5,28 +5,28 @@
       <h1>Wapes</h1>
       <div id="app">
         <form>
-          <div>
+          <div class="row">
             <label for="base"> Base (ml)</label>
             <input id="base" type="text" v-model.number="baseVolume" v-on:keyup="calc">
           </div>
-          <div>
+          <div class="row">
             <label for="flavor">Flavor (%)</label>
             <input id="flavor" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calc">
           </div>
-          <div>
+          <div class="row">
             <label for="nico">Nico Strength (mg/ml)</label>
             <input id="nico" v-model.number="nicoStrength" v-on:keyup="calc">
           </div>
-          <div>
+          <div class="row">
             <label for="flavcond">Flavor conditionning (ml)</label>
             <input id="flavcond" v-model.number="flavorCond" v-on:keyup="calc">
           </div>
           <h4>You need</h4>
-          <div>
-            <p><span class="result">{{nbBooster}}  booster(s)</span></p>
-            <p><span class="result">{{nbFlavor}}  flavor(s) of {{flavorCond}} ml for</span>
-            <span class="result">{{flavorVolume}} ml</span></p>
-            <p>for total of <span class="result">{{totalVolume}} ml</span></p>
+          <div class="row">
+            <p><span class="result">{{nbBooster}}</span>  booster(s) of 10ml</p>
+            <p><span class="result">{{nbFlavor}}</span>  flavor(s) of {{flavorCond}} ml for</span>
+            <span class="result">{{flavorVolume}}</span> ml</p>
+            <p>for a total of <span class="result">{{totalVolume}}</span> ml</p>
           </div>
         </form>
       </div>
@@ -83,10 +83,18 @@ export default {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-color:#3986c4;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1px;
 }
 
 p, label {
