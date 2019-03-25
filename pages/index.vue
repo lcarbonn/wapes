@@ -6,8 +6,8 @@
       <div id="app">
         <form>
           <div class="row">
-            <label for="base"> Base (ml)</label>
-            <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calc">
+            <label for="total">Total (ml)</label>
+            <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calc(true)">
           </div>
           <div class="row">
             <label for="flavor">Flavor (%)</label>
@@ -27,10 +27,13 @@
           </div>
           <h4>You need</h4>
           <div class="row">
+            <label for="base"> Base (ml)</label>
+            <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calc(false)">
+          </div>
+          <div class="row">
             <p><span class="result">{{nbBooster}}</span>  booster(s) of 10ml</p>
-            <p><span class="result">{{nbFlavor}}</span>  flavor(s) of {{flavorCond}} ml for</span>
+            <p><span class="result">{{nbFlavor}}</span>  flavor(s) of {{flavorCond}} ml for
             <span class="result">{{flavorVolume}}</span> ml</p>
-            <p>for a total of <span class="result">{{totalVolume}}</span> ml</p>
           </div>
         </form>
       </div>
@@ -55,6 +58,7 @@ export default {
     nbBooster:'',
     flavorCond:'',
     nbFlavor:'',
+    isTotal:false,
     nicos: [
       {rate:''},
       {rate:3},
@@ -66,11 +70,8 @@ export default {
   }},
 
 	methods: {
-  	calc : function (event) {
+    calcbase : function() {
       this.totalVolume = '';
-      this.nbBooster = '';
-      this.nbFlavor = '';
-
       this.totalVolume = this.baseVolume;
       if(!isNaN(this.flavorPercent)) {
         this.flavorVolume = this.baseVolume * this.flavorPercent / 100;
@@ -82,11 +83,39 @@ export default {
         this.nbBooster = Math.round(tempbooster);
         this.totalVolume = Math.round(this.totalVolume + 10*tempbooster);
       }
+    },
+
+    calctotal : function() {
+      this.baseVolume = '';
+      this.baseVolume = this.totalVolume;
+      if(!isNaN(this.flavorPercent)) {
+        this.flavorVolume = this.totalVolume * this.flavorPercent / 100;
+        this.baseVolume = this.baseVolume - this.flavorVolume;
+      }
+      /* x = 6b/140 */
+      if (!isNaN(this.nicoStrength)) {
+        var tempbooster = this.totalVolume * this.nicoStrength / 140;
+        this.nbBooster = Math.round(tempbooster);
+        this.baseVolume = this.baseVolume - 10*this.nbBooster;
+      }
+    },
+
+    calc : function (isTotal) {
+      this.nbBooster = '';
+      this.flavorVolume = '';
+      this.nbFlavor = '';
+      if(isTotal==true || isTotal==false) this.isTotal = isTotal;
+      if(this.isTotal==true) {
+        this.calctotal ();
+      } else {
+        this.calcbase ();
+      }
       if(isFinite(this.flavorVolume/this.flavorCond)) {
         this.nbFlavor = Math.round(this.flavorVolume/this.flavorCond);
       }
+
 		}
-	}      
+  }
 }
 </script>
 
@@ -133,6 +162,14 @@ input {
   width: 90%;
   color: white;
   text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
 }
 
 select {
