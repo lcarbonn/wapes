@@ -21,14 +21,14 @@
               </option>
             </select>
           </div>
-          <div class="row">
-            <label for="flavcond">Flavor conditionning (ml)</label>
-            <input id="flavcond" type="number" v-model.number="flavorCond" v-on:keyup="calc">
-          </div>
           <h4>You need</h4>
           <div class="row">
             <label for="base"> Base (ml)</label>
             <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calc(false)">
+          </div>
+          <div class="row">
+            <label for="flavcond">Flavor conditionning (ml)</label>
+            <input id="flavcond" type="number" v-model.number="flavorCond" v-on:keyup="calc">
           </div>
           <div class="row">
             <p><span class="result">{{nbBooster}}</span>  booster(s) of 10ml</p>
@@ -88,13 +88,13 @@ export default {
     calctotal : function() {
       this.baseVolume = '';
       this.baseVolume = this.totalVolume;
-      if(!isNaN(this.flavorPercent)) {
-        this.flavorVolume = this.totalVolume * this.flavorPercent / 100;
+      if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
+        this.flavorVolume = this.totalVolume * this.flavorPercent/100;
         this.baseVolume = this.baseVolume - this.flavorVolume;
       }
       /* x = 6b/140 */
       if (!isNaN(this.nicoStrength)) {
-        var tempbooster = this.totalVolume * this.nicoStrength / 140;
+        var tempbooster = this.totalVolume * this.nicoStrength / 200;
         this.nbBooster = Math.round(tempbooster);
         this.baseVolume = this.baseVolume - 10*this.nbBooster;
       }
