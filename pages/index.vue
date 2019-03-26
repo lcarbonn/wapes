@@ -15,7 +15,7 @@
           </div>
           <div class="row">
             <label for="nico">Nico Strength (mg/ml)</label>
-            <select id="nico" v-model.number="nicoStrength" v-on:click="calc">
+            <select id="nico" v-model.number="nicoStrength" v-on:change="calc">
               <option v-for="nico in nicos" v-bind:value="nico.rate" v-bind:key="nico.id">
                 {{ nico.rate }}
               </option>
