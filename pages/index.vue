@@ -30,9 +30,14 @@
             <input id="flavcond" type="number" v-model.number="flavorCond" v-on:keyup="calc">
           </div>
           <div class="row">
-            <p><span class="result">{{nbBooster}}</span>  booster(s) of 10ml</p>
-            <p><span class="result">{{nbFlavor}}</span>  flavor(s) of {{flavorCond}} ml for
-            <span class="result">{{flavorVolume}}</span> ml</p>
+            <p>
+              <span class="result">{{nbBooster}}</span>  booster(s) of 10ml for
+              <span class="result">{{boostVolume}}</span> ml
+            </p>
+            <p>
+              <span class="result">{{nbFlavor}}</span>  flavor(s) of {{flavorCond}} ml for
+              <span class="result">{{flavorVolume}}</span> ml
+            </p>
           </div>
         </form>
       </div>
@@ -55,6 +60,7 @@ export default {
     flavorVolume:'',
     nicoStrength:'',
     nbBooster:'',
+    boostVolume:'',
     flavorCond:'',
     nbFlavor:'',
     isTotal:false,
@@ -71,15 +77,15 @@ export default {
 	methods: {
     calcbase : function() {
       this.totalVolume = '';
-      this.totalVolume = Math.ceil(this.baseVolume / (1- (this.flavorPercent/100) - (this.nicoStrength/20)));
+      this.totalVolume = Math.round(this.baseVolume / (1- (this.flavorPercent/100) - (this.nicoStrength/20)));
 
       if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
-        this.flavorVolume = this.totalVolume * this.flavorPercent/100;
+        this.flavorVolume = Math.round(this.totalVolume * this.flavorPercent/100);
       }
       /* x = 6b/140 */
       if (!isNaN(this.nicoStrength)) {
-        var tempbooster = this.totalVolume * this.nicoStrength / 200;
-        this.nbBooster = Math.ceil(tempbooster);
+        this.boostVolume = Math.round(this.totalVolume * this.nicoStrength / 20);
+        this.nbBooster = Math.ceil(this.boostVolume/10);
       }
     },
 
@@ -88,14 +94,14 @@ export default {
       this.baseVolume = this.totalVolume;
 
       if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
-        this.flavorVolume = this.totalVolume * this.flavorPercent/100;
+        this.flavorVolume = Math.round(this.totalVolume * this.flavorPercent/100);
         this.baseVolume = this.baseVolume - this.flavorVolume;
       }
       /* x = 6b/140 */
       if (!isNaN(this.nicoStrength)) {
-        var tempbooster = this.totalVolume * this.nicoStrength / 200;
-        this.nbBooster = Math.ceil(tempbooster);
-        this.baseVolume = Math.ceil(this.baseVolume - 10*tempbooster);
+        this.boostVolume = Math.round(this.totalVolume * this.nicoStrength / 20);
+        this.nbBooster = Math.ceil(this.boostVolume/10);
+        this.baseVolume = Math.ceil(this.baseVolume - this.boostVolume);
       }
     },
 
