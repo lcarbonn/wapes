@@ -21,7 +21,6 @@
               </option>
             </select>
           </div>
-          <h4>You need</h4>
           <div class="row">
             <label for="base"> Base (ml)</label>
             <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calc(false)">
@@ -72,22 +71,22 @@ export default {
 	methods: {
     calcbase : function() {
       this.totalVolume = '';
-      this.totalVolume = this.baseVolume;
-      if(!isNaN(this.flavorPercent)) {
-        this.flavorVolume = this.baseVolume * this.flavorPercent / 100;
-        this.totalVolume = this.totalVolume + this.flavorVolume;
+      this.totalVolume = Math.ceil(this.baseVolume / (1- (this.flavorPercent/100) - (this.nicoStrength/20)));
+
+      if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
+        this.flavorVolume = this.totalVolume * this.flavorPercent/100;
       }
       /* x = 6b/140 */
       if (!isNaN(this.nicoStrength)) {
-        var tempbooster = this.totalVolume * this.nicoStrength / 140;
-        this.nbBooster = Math.round(tempbooster);
-        this.totalVolume = Math.round(this.totalVolume + 10*tempbooster);
+        var tempbooster = this.totalVolume * this.nicoStrength / 200;
+        this.nbBooster = Math.ceil(tempbooster);
       }
     },
 
     calctotal : function() {
       this.baseVolume = '';
       this.baseVolume = this.totalVolume;
+
       if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
         this.flavorVolume = this.totalVolume * this.flavorPercent/100;
         this.baseVolume = this.baseVolume - this.flavorVolume;
@@ -95,8 +94,8 @@ export default {
       /* x = 6b/140 */
       if (!isNaN(this.nicoStrength)) {
         var tempbooster = this.totalVolume * this.nicoStrength / 200;
-        this.nbBooster = Math.round(tempbooster);
-        this.baseVolume = this.baseVolume - 10*this.nbBooster;
+        this.nbBooster = Math.ceil(tempbooster);
+        this.baseVolume = Math.ceil(this.baseVolume - 10*tempbooster);
       }
     },
 
@@ -111,7 +110,7 @@ export default {
         this.calcbase ();
       }
       if(isFinite(this.flavorVolume/this.flavorCond)) {
-        this.nbFlavor = Math.round(this.flavorVolume/this.flavorCond);
+        this.nbFlavor = Math.ceil(this.flavorVolume/this.flavorCond);
       }
 
 		}
@@ -158,7 +157,7 @@ input {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #3986c4;
   border: 1px solid;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   width: 90%;
   color: white;
   text-align: center;
@@ -177,7 +176,7 @@ select {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #3986c4;
   border: 1px solid;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   width: 90%;
   color: white;
   text-align: center;
