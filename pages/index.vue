@@ -6,12 +6,26 @@
       <div id="app">
         <form>
           <div class="row">
-            <label for="total">Total (ml)</label>
-            <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calc(true)">
+            <div class="col">
+              <label for="total">Total (ml)</label>
+              <span>&nbsp;or&nbsp;</span>
+              <label for="base"> Base (ml)</label>
+            </div>
+            <div class="col">
+              <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calcTotal(true)">
+              <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calcTotal(false)">
+            </div>
           </div>
           <div class="row">
-            <label for="flavor">Flavor (%)</label>
-            <input id="flavor" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calc">
+            <div class="col">
+              <label for="flavorPercent">Flavor (%)</label>
+              <span>&nbsp;or&nbsp;</span>
+              <label for="flavorVolume">Flavor (ml)</label>
+            </div>
+            <div class="col">
+              <input id="flavorPercent" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calcFlavor(true)">
+              <input id="flavorVolume" type="number" v-model.number="flavorVolume" v-on:keyup="calcFlavor(false)">
+            </div>
           </div>
           <div class="row">
             <label for="nico">Nico Strength (mg/ml)</label>
@@ -20,10 +34,6 @@
                 {{ nico.rate }}
               </option>
             </select>
-          </div>
-          <div class="row">
-            <label for="base"> Base (ml)</label>
-            <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calc(false)">
           </div>
           <div class="row">
             <label for="flavcond">Flavor conditionning (ml)</label>
@@ -64,6 +74,7 @@ export default {
     flavorCond:'',
     nbFlavor:'',
     isTotal:false,
+    isPercent:true,
     nicos: [
       {rate:''},
       {rate:3},
@@ -75,29 +86,42 @@ export default {
   }},
 
 	methods: {
-    calcbase : function() {
-      this.totalVolume = '';
-      this.totalVolume = Math.round(this.baseVolume / (1- (this.flavorPercent/100) - (this.nicoStrength/20)));
 
-      if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
-        this.flavorVolume = Math.round(this.totalVolume * this.flavorPercent/100);
+    calculFlavor : function() {
+      if(this.isPercent==true) {
+        if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
+          this.flavorVolume = Math.round(this.totalVolume * this.flavorPercent/100);
+        }
+      } else {
+        if(this.flavorVolume !='' && !isNaN(this.flavorVolume)) {
+          this.flavorPercent = Math.round (this.flavorVolume/this.totalVolume*100);
+        }
       }
-      /* x = 6b/140 */
+    },
+
+    calcWithBase : function() {
+      this.totalVolume = '';
+      if(this.isPercent==true) {
+        this.totalVolume = Math.round(this.baseVolume / (1- (this.flavorPercent/100) - (this.nicoStrength/20)));
+      } else {
+        this.totalVolume = Math.round((this.baseVolume + this.flavorVolume) / (1- (this.nicoStrength/20)));
+      }
+
+      this.calculFlavor();
+      
       if (!isNaN(this.nicoStrength)) {
         this.boostVolume = Math.round(this.totalVolume * this.nicoStrength / 20);
         this.nbBooster = Math.ceil(this.boostVolume/10);
       }
     },
 
-    calctotal : function() {
+    calcWithTotal : function() {
       this.baseVolume = '';
       this.baseVolume = this.totalVolume;
 
-      if(this.flavorPercent !='' && !isNaN(this.flavorPercent)) {
-        this.flavorVolume = Math.round(this.totalVolume * this.flavorPercent/100);
-        this.baseVolume = this.baseVolume - this.flavorVolume;
-      }
-      /* x = 6b/140 */
+      this.calculFlavor();
+      this.baseVolume = this.baseVolume - this.flavorVolume;
+
       if (!isNaN(this.nicoStrength)) {
         this.boostVolume = Math.round(this.totalVolume * this.nicoStrength / 20);
         this.nbBooster = Math.ceil(this.boostVolume/10);
@@ -105,21 +129,30 @@ export default {
       }
     },
 
-    calc : function (isTotal) {
+    calc : function () {
       this.nbBooster = '';
-      this.flavorVolume = '';
       this.nbFlavor = '';
-      if(isTotal==true || isTotal==false) this.isTotal = isTotal;
       if(this.isTotal==true) {
-        this.calctotal ();
+        this.calcWithTotal ();
       } else {
-        this.calcbase ();
+        this.calcWithBase ();
       }
       if(isFinite(this.flavorVolume/this.flavorCond)) {
         this.nbFlavor = Math.ceil(this.flavorVolume/this.flavorCond);
       }
+    },
 
-		}
+    calcTotal : function (isTotal) {
+      if(isTotal==true || isTotal==false) this.isTotal = isTotal;
+      this.calc();
+    },
+
+    calcFlavor : function (isPercent) {
+      if(isPercent==true || isPercent==false) this.isPercent = isPercent;
+      this.calc();
+    },
+
+
   }
 }
 </script>
@@ -143,7 +176,14 @@ export default {
   margin: 1px;
 }
 
-p, label {
+.col {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+p, label, span {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.5rem;
@@ -167,6 +207,10 @@ input {
   width: 90%;
   color: white;
   text-align: center;
+}
+
+.col input {
+  width: 40%;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -207,9 +251,5 @@ h4 {
   font-size: 1.5rem;
   color:white;
   letter-spacing: 1px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
