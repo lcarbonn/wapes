@@ -12,7 +12,8 @@
                 <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calcTotal(true)">
               </div>
               <div class="row">
-                <span>or</span>
+                <p>or</p>
+                <p>&nbsp;</p>
               </div>
               <div class="row">
                 <label for="base"> Base (ml)</label>
@@ -27,7 +28,8 @@
                 <input id="flavorPercent" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calcFlavor(true)">
               </div>
               <div class="row">
-                <span>or</span>
+                <p>or</p>
+                <p>&nbsp;</p>
               </div>
               <div class="row">
                 <label for="flavorVolume">Flavor (ml)</label>
