@@ -12,8 +12,8 @@
                 <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calcTotal(true)">
               </div>
               <div class="row">
-                <p>or</p>
                 <p>&nbsp;</p>
+                <p>or</p>
               </div>
               <div class="row">
                 <label for="base"> Base (ml)</label>
@@ -28,8 +28,8 @@
                 <input id="flavorPercent" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calcFlavor(true)">
               </div>
               <div class="row">
-                <p>or</p>
                 <p>&nbsp;</p>
+                <p>or</p>
               </div>
               <div class="row">
                 <label for="flavorVolume">Flavor (ml)</label>
@@ -38,15 +38,15 @@
             </div>
           </div>
           <div class="row">
-            <label for="nico">Nico Strength (mg/ml)</label>
-            <select id="nico" v-model.number="nicoStrength" v-on:change="calc">
-              <option v-for="nico in nicos" v-bind:value="nico.rate" v-bind:key="nico.id">
-                {{ nico.rate }}
-              </option>
-            </select>
+            <span>Nico Strength (mg/ml)</span>
+            <div class="colnico">
+              <div class="nicodiv" v-for="nico in nicos" v-bind:key="nico.id">
+                <a class="nicolink" v-bind:key="nico.id" v-on:click="calcRate(nico.rate)" >{{nico.rate}}</a>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <label for="flavcond">Flavor conditionning (ml)</label>
+            <label for="flavcond">Flavor Conditionning (ml)</label>
             <input id="flavcond" type="number" v-model.number="flavorCond" v-on:keyup="calc">
           </div>
           <div class="row">
@@ -162,6 +162,13 @@ export default {
       this.calc();
     },
 
+    calcRate : function (rate) {
+      this.nicoStrength='';
+      if(rate!='') {
+        this.nicoStrength = rate;
+      }
+      this.calc();
+    }
 
   }
 }
@@ -223,24 +230,52 @@ input {
   width: 80%;
 }
 
+.colnico {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  padding: 1px;
+}
+
+.nicolink {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.3rem;
+  color: #3986c4;
+  text-decoration: none !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;  cursor: pointer;
+}
+
+.nicodiv {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 1.25rem;
+  background-color:white;
+}
+
+.nicodiv:hover {
+    background: #3986c4;
+}
+.nicolink:hover {
+    color: white;
+}
+
+.active {
+    background: #000;
+}
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     margin: 0; 
-}
-
-select {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #3986c4;
-  border: 1px solid;
-  font-size: 1.3rem;
-  width: 90%;
-  color: white;
-  text-align: center;
-  text-align-last: center;
 }
 
 h1 {
