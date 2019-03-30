@@ -7,24 +7,32 @@
         <form>
           <div class="row">
             <div class="col">
-              <label for="total">Total (ml)</label>
-              <span>&nbsp;or&nbsp;</span>
-              <label for="base"> Base (ml)</label>
-            </div>
-            <div class="col">
-              <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calcTotal(true)">
-              <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calcTotal(false)">
+              <div class="row">
+                <label for="total">Total (ml)</label>
+                <input id="total" type="number" v-model.number="totalVolume" v-on:keyup="calcTotal(true)">
+              </div>
+              <div class="row">
+                <span>or</span>
+              </div>
+              <div class="row">
+                <label for="base"> Base (ml)</label>
+                <input id="base" type="number" v-model.number="baseVolume" v-on:keyup="calcTotal(false)">
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="flavorPercent">Flavor (%)</label>
-              <span>&nbsp;or&nbsp;</span>
-              <label for="flavorVolume">Flavor (ml)</label>
-            </div>
-            <div class="col">
-              <input id="flavorPercent" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calcFlavor(true)">
-              <input id="flavorVolume" type="number" v-model.number="flavorVolume" v-on:keyup="calcFlavor(false)">
+              <div class="row">
+                <label for="flavorPercent">Flavor (%)</label>
+                <input id="flavorPercent" type="number" max="100" v-model.number="flavorPercent" v-on:keyup="calcFlavor(true)">
+              </div>
+              <div class="row">
+                <span>or</span>
+              </div>
+              <div class="row">
+                <label for="flavorVolume">Flavor (ml)</label>
+                <input id="flavorVolume" type="number" v-model.number="flavorVolume" v-on:keyup="calcFlavor(false)">
+              </div>
             </div>
           </div>
           <div class="row">
@@ -210,7 +218,7 @@ input {
 }
 
 .col input {
-  width: 40%;
+  width: 80%;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
