@@ -62,15 +62,20 @@
         </form>
       </div>
     </div>
+    <div>
+      <AppFooter />
+    </div>
   </section>
 </template>
 
 <script>
 import WapesLogo from '~/components/Logo.vue'
+import AppFooter from '~/components/AppFooter.vue'
 
 export default {
   components: {
-    WapesLogo
+    WapesLogo,
+    AppFooter
   },
 
   data() {return {
