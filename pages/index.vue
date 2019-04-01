@@ -40,8 +40,8 @@
           <div class="row">
             <span>Nico Strength (mg/ml)</span>
             <div class="colnico">
-              <div class="nicodiv" v-for="nico in nicos" v-bind:key="nico.id">
-                <a class="nicolink" v-bind:key="nico.id" v-on:click="calcRate(nico.rate)" >{{nico.rate}}</a>
+              <div class="nicodiv" v-for="nico in nicos" v-bind:class="{activediv:isActive(nico)}" v-bind:key="nico.id">
+                <a class="nicolink" v-bind:class="{activelink:isActive(nico)}" v-bind:key="nico.id" v-on:click="calcRate(nico.rate)" >{{nico.rate}}</a>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default {
     isTotal:false,
     isPercent:true,
     nicos: [
-      {rate:''},
+      {rate:0},
       {rate:3},
       {rate:6},
       {rate:9},
@@ -100,7 +100,11 @@ export default {
     ]
   }},
 
-	methods: {
+    methods: {
+    isActive : function(nico) {
+      if(nico.rate==this.nicoStrength) return true;
+      else return false;
+    },
 
     calculFlavor : function() {
       if(this.isPercent==true) {
@@ -265,14 +269,18 @@ input {
 }
 
 .nicodiv:hover {
-    background: #3986c4;
+  background: #3986c4;
 }
 .nicolink:hover {
-    color: white;
+  color: white;
 }
 
-.active {
-    background: #000;
+.activediv {
+  background: #3986c4;
+  border: solid 1px white;
+}
+.activelink {
+  color: white;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
