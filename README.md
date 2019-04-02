@@ -8,8 +8,8 @@
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# serve with hot reload at your local ip address :3000 for standalone acces from mobile
+$ npm run dev -- --hostname:0.0.0.0
 
 # build for production and launch server
 $ npm run build
