@@ -1,7 +1,9 @@
 # COMPONENTS
 
-**This directory is not required, you can delete it if you don't want to use it.**
+Were components are
 
-The components directory contains your Vue.js Components.
+## Logo
+This is the logo component
 
-_Nuxt.js doesn't supercharge these components._
+## AppFooter
+This is the footer component

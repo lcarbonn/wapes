@@ -1,6 +1,12 @@
-# calculovape
+# Wapes
 
-> Vape Calculator
+>Vape Calculator
+
+Wapes is a simple standlone web app calculator for vape
+
+## Wapes on heroku
+
+Wapes is deployed on https://wapes.herokuapp.com
 
 ## Build Setup
 
@@ -18,5 +24,3 @@ $ npm start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
