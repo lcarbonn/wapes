@@ -1,7 +1,7 @@
 <template>
   <div class="AppFooter">
     <br/>
-    Copyright © 2019 - Made with vapes in Toulouse, France
+    Copyright © 2020 - Made with vapes in Toulouse, France
   </div>
 </template>
 
