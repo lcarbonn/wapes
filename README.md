@@ -23,4 +23,7 @@ $ npm start
 
 # generate static project
 $ npm run generate
+
+# deploy on heroku
+automatic deploy on heroku on master push
 ```
