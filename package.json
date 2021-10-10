@@ -1,6 +1,6 @@
 {
   "name": "wapes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vape Calculator",
   "author": "lcarbonn",
   "private": true,
@@ -12,11 +12,11 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "cross-env": "^5.2.0",
-    "nuxt": "^2.11.0"
+    "@nuxtjs/pwa": "^3.3.5",
+    "cross-env": "^5.2.1",
+    "nuxt": "^2.15.4"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.7"
   }
 }
